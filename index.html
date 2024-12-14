@@ -66,10 +66,13 @@
         </div>
     </div>
     <script>
-        document.addEventListener('click', function () {
+        // Play the audio when the user scrolls the page
+        let audioPlayed = false; // To ensure the audio only starts once
+        window.addEventListener('scroll', function () {
             const audio = document.getElementById('bgm');
-            if (audio.paused) {
+            if (!audioPlayed) {
                 audio.play().catch(error => console.log('Autoplay failed:', error));
+                audioPlayed = true; // Mark as played
             }
         });
     </script>
