@@ -53,7 +53,7 @@
             <div class="row align-items-center mt-4">
                 <!-- Audio player on the left -->
                 <div class="col-auto">
-                    <audio id="bgm" controls autoplay loop>
+                    <audio id="bgm" controls loop muted>
                         <source src="audio/bgm.mp3" type="audio/mpeg">
                         Your browser does not support the audio element.
                     </audio>
@@ -66,24 +66,25 @@
         </div>
     </div>
     <script>
-        // Add an event listener for user interaction (click or scroll)
         const audio = document.getElementById("bgm");
         let audioPlayed = false;
 
-        const playAudio = () => {
+        const enableAudio = () => {
             if (!audioPlayed) {
+                audio.muted = false; // Unmute the audio
                 audio.play().then(() => {
-                    console.log("Audio is playing.");
-                    audioPlayed = true; // Ensure the audio only plays once
+                    console.log("Audio is now playing.");
+                    audioPlayed = true; // Prevent further triggers
                 }).catch(error => {
-                    console.error("Autoplay failed:", error);
+                    console.error("Failed to play audio:", error);
                 });
             }
         };
 
         // Listen for user interaction
-        document.addEventListener("click", playAudio);
-        document.addEventListener("scroll", playAudio);
+        document.addEventListener("click", enableAudio);
+        document.addEventListener("scroll", enableAudio);
+        document.addEventListener("touchstart", enableAudio); // For mobile touch
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
