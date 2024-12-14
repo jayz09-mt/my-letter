@@ -66,14 +66,12 @@
         </div>
     </div>
     <script>
-        // Play the audio when the user scrolls the page
-        let audioPlayed = false; // To ensure the audio only starts once
-        window.addEventListener('scroll', function () {
-            const audio = document.getElementById('bgm');
-            if (!audioPlayed) {
-                audio.play().catch(error => console.log('Autoplay failed:', error));
-                audioPlayed = true; // Mark as played
-            }
+        // Add event listener to play audio on 'load'
+        window.addEventListener("load", () => {
+            const audio = document.getElementById("bgm");
+            audio.play().catch(error => {
+                console.log("Autoplay failed due to browser restrictions:", error);
+            });
         });
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
